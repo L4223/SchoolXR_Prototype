@@ -2,7 +2,7 @@
 
 **SchoolXR** ist eine Plattform, mit der Lehrkräfte und Schüler:innen interaktive 3D-Modelle mit Annotationen und Aufgaben für den Unterricht erstellen, bearbeiten und nutzen können.
 
----
+![SchoolXR Screenshot](./Abgabe/Abbildungen/13.png)
 
 ## Features
 
