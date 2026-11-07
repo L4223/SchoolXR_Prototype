@@ -1,17 +1,72 @@
-# SchoolXR – 3D Modell Annotation Plattform
+# SchoolXR – 3D-Lerninhalte für den Unterricht
 
-**SchoolXR** ist eine Plattform, mit der Lehrkräfte und Schüler:innen interaktive 3D-Modelle mit Annotationen und Aufgaben für den Unterricht erstellen, bearbeiten und nutzen können.
+**Bachelorarbeit (B.Eng. Medieningenieurwesen, FH Kiel) in Kooperation mit Dataport.**
+SchoolXR ist ein webbasiertes Werkzeug, mit dem Lehrkräfte 3D-Modelle mit Erklärungen und Aufgaben verbinden – und Schüler:innen diese direkt im Browser erkunden. Ohne App-Installation und ohne spezielle XR-Hardware, auf PC, Tablet und Smartphone.
 
-![SchoolXR Screenshot](./Abgabe/Abbildungen/13.png)
+![SchoolXR Startseite mit Rollenwahl](docs/screenshots/app-desktop.jpg)
 
-## Features
+## Das Problem
 
-- **Modelle hochladen oder aus Bibliothek wählen** (glTF/GLB/USDZ)
-- **Hotspots/Annotationen** direkt im Modell platzieren
-- **Sammlungen** von Annotationen speichern und laden
-- **Rollenbasiertes System**: Lehrkraft/Schüler:in
-- **LTI-Integration** (Learning Tools Interoperability, optional)
-- **Checklisten und Aufgaben** für Schüler:innen
+3D und AR können Unterricht anschaulicher machen, scheitern in Schulen aber oft an Hardware, Installationen und Datenschutz. SchoolXR setzt deshalb komplett auf Web-Technologien und ist für die Einbindung in Lernmanagementsysteme wie **Moodle** und die **dBildungscloud** über **LTI 1.3** konzipiert.
+
+## Funktionen
+
+| Für Lehrkräfte | Für Schüler:innen |
+| --- | --- |
+| Modell aus der Sketchfab-Bibliothek wählen oder eigenes hochladen (glTF/GLB/USDZ) | Lernvorlage öffnen und das Modell frei drehen, zoomen und erkunden |
+| Hotspots direkt am Modell setzen, mit Fachinformationen und Aufgaben | Hotspots anklicken, Erklärungen lesen und Aufgaben bearbeiten |
+| Hotspots als Sammlung speichern und wiederverwenden | Fortschritt über eine Checkliste verfolgen |
+| Geführter Ablauf: Start → Auswählen → Anpassen → Fertig | Funktioniert auf PC, Tablet und Smartphone |
+
+<table>
+  <tr>
+    <td width="62%"><img src="docs/screenshots/flow.jpg" alt="Ablauf von der Modellauswahl bis zur fertigen Lernvorlage"></td>
+    <td width="38%"><img src="docs/screenshots/app-mobile.jpg" alt="SchoolXR auf dem Smartphone"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Geführter Ablauf: Modell wählen, Hotspots setzen, Vorschau prüfen</sub></td>
+    <td align="center"><sub>Mobile Ansicht</sub></td>
+  </tr>
+</table>
+
+## Vorgehen
+
+Die Anwendung ist nutzerzentriert entstanden (Human-Centered Design):
+
+1. **Analyse:** Vergleich bestehender XR-Lösungen, Interviews, drei Personas und User Journeys (siehe `Abgabe/Anhang/`)
+2. **Konzept:** Papierprototypen und ein UI-Komponentensystem
+3. **Umsetzung:** React-Frontend mit `<model-viewer>` und einem Express-Backend mit LTI-Anbindung
+4. **Evaluation:** Usability-Tests mit Lehrkräften und eine ergänzende Online-Umfrage; die Ergebnisse flossen in den zweiten Prototyp ein
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/paper-prototype.jpg" alt="Papierprototypen"></td>
+    <td width="50%"><img src="docs/screenshots/ui-components.jpg" alt="UI-Komponenten"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Papierprototypen</sub></td>
+    <td align="center"><sub>UI-Komponenten: Upload, Stepper, Navigation, Modellbibliothek</sub></td>
+  </tr>
+</table>
+
+Die vollständige Arbeit liegt unter [`Abgabe/Thesis_Lasse_K.pdf`](Abgabe/Thesis_Lasse_K.pdf).
+
+## Tech-Stack
+
+| Bereich | Technologie |
+| --- | --- |
+| Frontend | React 19, Vite, React Router, Tailwind CSS, Flowbite |
+| 3D | [`<model-viewer>`](https://modelviewer.dev) (WebGL) |
+| Modellquelle | Sketchfab API |
+| Backend | Node.js, Express, [ltijs](https://cvmcosta.me/ltijs/) (LTI 1.3) |
+| Datenbank | MongoDB mit Mongoose |
+
+```text
+SchoolXR_Prototype/
+├── client/   React-Frontend (Vite)
+├── server/   Express-API, LTI-Provider, MongoDB-Anbindung
+└── Abgabe/   Bachelorarbeit, Abbildungen und Anhang (Personas, Umfrage, Usability-Tests)
+```
 
 ---
 
@@ -26,7 +81,7 @@
 
 ```bash
 git clone https://github.com/L4223/SchoolXR_Prototype.git
-cd SchoolXR
+cd SchoolXR_Prototype
 ```
 
 ### 2. Umgebungsvariablen anlegen
